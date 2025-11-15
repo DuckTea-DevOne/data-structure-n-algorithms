@@ -1,6 +1,6 @@
 package DataStructures;
 
-public class JArray <T> {
+public class JArray <T> implements ArrayInterface<T>{
 
     private Object [] array;
     private int size;
@@ -23,6 +23,7 @@ public class JArray <T> {
         this.currentIndex = 0;
     }
 
+    @Override
     public void add (T element) {
         this.array[this.currentIndex] = element;
         this.currentIndex++;
@@ -30,6 +31,7 @@ public class JArray <T> {
         element = null;
     }
 
+    @Override
     public T get (int index) {
         if (index >= currentIndex) {
             throw new ArrayIndexOutOfBoundsException("Index out of bounds | Size : " + this.currentIndex);
@@ -37,6 +39,7 @@ public class JArray <T> {
         return (T)this.array[index];
     }
 
+    @Override
     public int size () {
         return this.currentIndex;
     }
