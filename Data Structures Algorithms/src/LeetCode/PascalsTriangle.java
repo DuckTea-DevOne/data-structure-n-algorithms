@@ -44,6 +44,7 @@ public class PascalsTriangle {
     public static void main(String[] args) {
         System.out.println(new PascalsTriangle().generate(5));
         System.out.println(new PascalsTriangle().generateV2(5));
+        System.out.println(new PascalsTriangle().generateV3(5));
     }
 
     // Optimised 1 : Optimize the iteration;
@@ -70,11 +71,33 @@ public class PascalsTriangle {
 
     // Optimised 2 : Pascal's Triangle by theory is based on [nCr = n! / (r! * (n-r)!) ]
 
-//    List<List<Integer>> generateV3(int numRows) {
-//
-//    }
-//
-//    int nCr(int n, int r) {
-//
-//    }
+    List<List<Integer>> generateV3(int numRows) {
+        List<List<Integer>> solution = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> list = new ArrayList<>();
+            for (int j = 0; j <= i; j++) {
+                // iCj
+                list.add(nCr(i , j ));
+            }
+            solution.add(list);
+        }
+        return solution;
+    }
+
+    int nCr(int n, int r) {
+        if (n < 0 || r < 0) {
+            return -1;
+        }
+
+        int numerator = 1;
+        int denominator = 1;
+        r = Math.min(r, (n - r));
+
+        for (int i = 1 ; i <= r; i++) {
+            numerator *= (n - i + 1);
+            denominator *= i;
+        }
+
+        return numerator/denominator;
+    }
 }
